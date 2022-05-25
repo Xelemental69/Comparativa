@@ -1,7 +1,5 @@
 package pruebas;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.*;
 
 import controladores.*;
@@ -16,25 +14,40 @@ public class PruebaCompleta {
 		ControladorModelo contMod = new ControladorModelo();
 		ControladorMarca contMarca = new ControladorMarca();
 		
+		// Creación de un modelo, sin marca ni especificaciones ni tarjeta
+		Modelo mod1 = new Modelo();
+		mod1.setNombreModelo("D5500");
+		mod1.setPrecioModelo(428.00);
+		mod1.setCatalogado(true);
+		mod1.setCategoria("Cámara de objetivo variable");
+
+		contMod.crearModelo(mod1);
+		
+		// Creación de un ranking con algunos datos, sin modelo
+		Ranking r1 = new Ranking();
+		r1.setPosicion(2);
+		r1.setPuntuacion(975);
+		
+		contRank.crearRanking(r1);
+		
 		List<Ranking> rankingCamaras = contRank.findAll();
 		
-		System.out.println("BIENVENIDO AL RENTACAR ----------");
+		System.out.println("BIENVENIDO A LA COMPARATIVA ----------");
 		System.out.println("\n\tEste es nuestro catálogo de vehículos:\n");
 		imprimirRanking(rankingCamaras);
 		
-		System.out.println("\nIntroduce tu modelo: ");
+		System.out.println("\nIntroduce tu modelo: D7500");
 		
 		System.out.println("Búsqueda de su marca en la base de datos...");
-		// 555666 es BabyJoda
 		Modelo mod = contMod.findByNombreModelo("D7500");
 		System.out.println("La marca del modelo es " + mod.getMarca());
 		
-			// Si al hacer la búsqueda el cliente no existiera (cliente == null),
-			// habría que pedir todos sus datos y su tarjeta
+			// Si al hacer la búsqueda el modelo no existiera (modelo == null),
+			// habría que pedir todos sus datos y su ranking
 		
-		// El cliente introduce la matrícula del vehículo a alquilar (una que haya en 
-		// el catálogo) - No puede alquilar un vehículo que no exista
-		// Suponemos que elige 0034AAB
+		// El cliente introduce el nombre del modelo a consultar (una que haya en 
+		// la comparativa) - No puede consultar uno que no exista
+		// Suponemos que elige D5500
 		Modelo mod2 = contMod.findByNombreModelo("D5500");
 		System.out.println("El modelo encontrado es " + mod2.getNombreModelo()
 		+ ", y su precio es " + mod2.getPrecioModelo());
@@ -75,12 +88,12 @@ public class PruebaCompleta {
 		
 		// Se crea un objeto modelo con los datos
 		Modelo modelo = new Modelo();
-		// Se actualiza la relación en la parte propietaria entre alquiler y cliente
+		// Se introducen los datos
 		modelo.setNombreModelo("EOD 100D");; 
 		modelo.setCategoria("Cámara de objetivo variable");
 		modelo.setPrecioModelo(450.00);
-		// Se actualiza la relación en la parte propietaria entre alquiler y vehiculo
 		modelo.setCategoria("Cámara de Objetivo Variable"); 
+		// Se asignan el ranking, la marca y las especificaciones
 		modelo.setRanking(ranking);
 		modelo.setMarca(marca);
 		modelo.setEspecificacionesModelo(new ArrayList<>());
