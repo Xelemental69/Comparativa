@@ -1,8 +1,6 @@
 package pruebas;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.Month;
+import java.util.*;
 
 import controladores.*;
 import entidades.*;
@@ -29,6 +27,7 @@ public class PruebaControladorMarca {
 		Marca m1 = new Marca();
 		m1.setNombreMarca("Panasonic");
 		m1.setDescMarca("Panasonic Corporation, anteriormente denominada Matsushita Electric Industrial, Co., Ltd. y referida simplemente como Panasonic, es una compañía multinacional cuya sede central se encuentra en Kadoma, Japón.");
+		m1.setModelosMarca(new ArrayList<>());
 		/*
 		a1.setCliente(c1); 			// Se relaciona el alquiler con el cliente c1
 		a1.setVehiculo(v1);			// Se relaciona el alquiler con el vehiculo v1

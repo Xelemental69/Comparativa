@@ -24,6 +24,7 @@ public class PruebaControladorModeloCascade {
 		mod2.setNombreModelo("Alpha a5000");
 		mod2.setPrecioModelo(480.00);
 		mod2.setCatalogado(true);
+		mod2.setCategoria("Cámara de objetivo variable");
 		// Establece la tarjeta de este cliente, ya que Cliente es propietaria de la 
 		// relación
 		mod2.setRanking(r1); 

@@ -22,7 +22,7 @@ public class Especificacion implements Serializable {
 
 	private String nomEspec;
 
-	private double valores;
+	private String valores;
 
 	//bi-directional many-to-one association to Modelo
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -56,11 +56,11 @@ public class Especificacion implements Serializable {
 		this.nomEspec = nomEspec;
 	}
 
-	public double getValores() {
+	public String getValores() {
 		return this.valores;
 	}
 
-	public void setValores(double valores) {
+	public void setValores(String valores) {
 		this.valores = valores;
 	}
 
@@ -83,6 +83,10 @@ public class Especificacion implements Serializable {
 		builder.append(nomEspec);
 		builder.append(", valores=");
 		builder.append(valores);
+		if(modelo != null) {
+		builder.append(", modelo=");
+		builder.append(modelo.getNombreModelo());
+		}
 		builder.append("]");
 		return builder.toString();
 	}

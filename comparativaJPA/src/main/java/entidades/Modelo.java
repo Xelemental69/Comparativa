@@ -32,7 +32,7 @@ public class Modelo implements Serializable {
 	private List<Especificacion> especificacionesModelo;
 
 	//bi-directional many-to-one association to Marca
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="codMarca")
 	private Marca marca;
 
@@ -137,8 +137,14 @@ public class Modelo implements Serializable {
 		builder.append(precioModelo);
 		builder.append(", especificacionesModelo=");
 		builder.append(especificacionesModelo);
+		if(marca != null) {
+		builder.append(", marca=");
+		builder.append(marca.getNombreMarca());
+		}
+		if(ranking != null) {
 		builder.append(", ranking=");
-		builder.append(ranking);
+		builder.append(ranking.getPosicion());
+		}
 		builder.append("]");
 		return builder.toString();
 	}

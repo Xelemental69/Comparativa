@@ -21,6 +21,7 @@ public class PruebaControladorModelo {
 		mod1.setNombreModelo("D5500");
 		mod1.setPrecioModelo(428.00);
 		mod1.setCatalogado(true);
+		mod1.setCategoria("Cámara de objetivo variable");
 
 		cmod.crearModelo(mod1);
 		imprimirEntidades(cmod);
@@ -37,6 +38,7 @@ public class PruebaControladorModelo {
 		mod2.setNombreModelo("D7500");
 		mod2.setPrecioModelo(1099.00);
 		mod2.setCatalogado(true);
+		mod2.setCategoria("Cámara de objetivo variable");
 		// Establece la tarjeta de este cliente, ya que Cliente es propietaria de la 
 		// relación
 		mod2.setRanking(rMod1); 

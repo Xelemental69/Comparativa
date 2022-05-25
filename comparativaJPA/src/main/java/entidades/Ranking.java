@@ -70,6 +70,8 @@ public class Ranking implements Serializable {
 		builder.append(posicion);
 		builder.append(", puntuacion=");
 		builder.append(puntuacion);
+		builder.append(", modelo=");
+		builder.append(modelo);
 		builder.append("]");
 		return builder.toString();
 	}

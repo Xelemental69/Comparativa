@@ -1,14 +1,11 @@
 package pruebas;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import controladores.*;
 import entidades.*;
 
-public class PruebaControladorTarjeta {
+public class PruebaControladorEspecificacion {
 
 	public static void main(String[] args) {
 
@@ -28,7 +25,7 @@ public class PruebaControladorTarjeta {
 		// Crear una entidad
 		Especificacion e1 = new Especificacion();
 		e1.setNomEspec("Resolución");;
-		e1.setValores(19.8);
+		e1.setValores("19.8");
 		e1.setDescrip("La capacidad que posee el sensor para notar el menor de los cambios");
 		ce.crearEspecificacion(e1);
 
@@ -38,7 +35,7 @@ public class PruebaControladorTarjeta {
 	
 		// Modificar una entidad
 		Especificacion e2 = ce.findByPK(2);
-		e2.setValores(16000);
+		e2.setValores("16000");
 		ce.modificarEspecificacion(e2);
 		System.out.println("Después de la modificación -------------------- ");
 		for (Especificacion e : ce.findAll()) {

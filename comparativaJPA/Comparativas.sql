@@ -39,8 +39,7 @@ CREATE TABLE `marcas` (
 
 LOCK TABLES `marcas` WRITE;
 /*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
-INSERT INTO `marcas` VALUES (1,'Nikon','Nikon Corporation, sociedad japonesa fundada en 1917,​ es una corporación multinacional japonesa, productor de cámaras fotográficas, prismáticos, microscopios, e instrumentos de medición.'),
-(2,'Canon','Canon Inc. es una compañía japonesa especializada en productos ópticos y de captura y reproducción de imágenes, que incluye fotografía, vídeo, fotocopiadoras e impresoras. Su sede principal se localiza en Tokio y actualmente es uno de los líderes en el sector de la fotografía y de la óptica.');
+INSERT INTO `marcas` VALUES (1,'Kodak','Eastman Kodak Company es una compañía multinacional fundada el año 1892 en los Estados Unidos dedicada al diseño, producción y comercialización de equipamiento fotográfico.');
 /*!40000 ALTER TABLE `marcas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,8 +84,8 @@ DROP TABLE IF EXISTS `especificaciones`;
 CREATE TABLE `especificaciones` (
   `codSpecs` int NOT NULL AUTO_INCREMENT,
   `nomEspec` varchar(55) DEFAULT NULL,
-  `valores` decimal DEFAULT NULL,
-  `descrip` varchar(69) DEFAULT NULL,
+  `valores` varchar(85) DEFAULT NULL,
+  `descrip` varchar(169) DEFAULT NULL,
   `idModelo` int,
   PRIMARY KEY (`codSpecs`),
   CONSTRAINT `fk_modelo` FOREIGN KEY (`idModelo`) REFERENCES `modelos` (`idModelo`)
