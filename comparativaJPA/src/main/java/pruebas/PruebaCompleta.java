@@ -14,6 +14,10 @@ public class PruebaCompleta {
 		ControladorModelo contMod = new ControladorModelo();
 		ControladorMarca contMarca = new ControladorMarca();
 		
+		Ranking rMod1 = new Ranking();
+		rMod1.setPosicion(11);
+		rMod1.setPuntuacion(979);
+		
 		// Creación de un modelo, sin marca ni especificaciones ni tarjeta
 		Modelo mod1 = new Modelo();
 		mod1.setNombreModelo("D5500");
@@ -22,6 +26,17 @@ public class PruebaCompleta {
 		mod1.setCategoria("Cámara de objetivo variable");
 
 		contMod.crearModelo(mod1);
+		
+		Modelo mod2 = new Modelo();
+		mod2.setNombreModelo("D7500");
+		mod2.setPrecioModelo(1099.00);
+		mod2.setCatalogado(true);
+		mod2.setCategoria("Cámara de objetivo variable");
+		// Establece el ranking de este modelo, ya que Modelo es propietaria de la 
+		// relación
+		mod2.setRanking(rMod1);
+		
+		contMod.crearModelo(mod2);
 		
 		// Creación de un ranking con algunos datos, sin modelo
 		Ranking r1 = new Ranking();
@@ -48,9 +63,9 @@ public class PruebaCompleta {
 		// El cliente introduce el nombre del modelo a consultar (una que haya en 
 		// la comparativa) - No puede consultar uno que no exista
 		// Suponemos que elige D5500
-		Modelo mod2 = contMod.findByNombreModelo("D5500");
-		System.out.println("El modelo encontrado es " + mod2.getNombreModelo()
-		+ ", y su precio es " + mod2.getPrecioModelo());
+		Modelo mod3 = contMod.findByNombreModelo("D5500");
+		System.out.println("El modelo encontrado es " + mod3.getNombreModelo()
+		+ ", y su precio es " + mod3.getPrecioModelo());
 		
 		//Se creará una marca, un ranking y tres especificaciones para un modelo:
 		
@@ -110,8 +125,9 @@ public class PruebaCompleta {
 			System.out.println(m);
 		}
 		
+		/*contMod.findByPK(1).setRanking(null);
 		contSpecs.borrarEspecificacion(contSpecs.findByPK(1));
-		contMod.borrarModelo(contMod.findByPK(1));
+		contMod.borrarModelo(contMod.findByNombreModelo("Nikon D3500"));*/
 		
 		System.out.println("\nTodas las Especificaciones");
 		for (Especificacion e : contSpecs.findAll()) {

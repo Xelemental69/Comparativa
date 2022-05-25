@@ -70,7 +70,7 @@ CREATE TABLE `modelos` (
 
 LOCK TABLES `modelos` WRITE;
 /*!40000 ALTER TABLE `modelos` DISABLE KEYS */;
-INSERT INTO `modelos` VALUES (1,'Nikon D3500','6',true, 450.00, 1, 1);
+INSERT INTO `modelos` VALUES (1,'Nikon D3500',1,true, 450.00, 1, 1);
 /*!40000 ALTER TABLE `modelos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `ranking` (
 
 LOCK TABLES `ranking` WRITE;
 /*!40000 ALTER TABLE `ranking` DISABLE KEYS */;
-INSERT INTO `ranking` VALUES (1,1,3456),(2,4,1234);
+INSERT INTO `ranking` VALUES (1,15,232),(2,10,342);
 /*!40000 ALTER TABLE `ranking` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -140,4 +140,4 @@ UNLOCK TABLES;
 
 -- Dump completed on 2021-02-01 20:52:03
 
--- select * from cliente;
+-- select * from modelos;
