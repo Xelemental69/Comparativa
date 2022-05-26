@@ -125,9 +125,10 @@ public class PruebaCompleta {
 			System.out.println(m);
 		}
 		
-		/*contMod.findByPK(1).setRanking(null);
+		
 		contSpecs.borrarEspecificacion(contSpecs.findByPK(1));
-		contMod.borrarModelo(contMod.findByNombreModelo("Nikon D3500"));*/
+		contSpecs.borrarEspecificacion(contSpecs.findByPK(2));
+		contMod.borrarModelo(contMod.findByPK(1));
 		
 		System.out.println("\nTodas las Especificaciones");
 		for (Especificacion e : contSpecs.findAll()) {
