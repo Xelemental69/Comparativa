@@ -87,6 +87,26 @@ public class ControladorEspecificacion {
 
 	}
 	
+	public Especificacion getfirstPKByPKModelo(int pkMod) {
+		this.em = entityManagerFactory.createEntityManager();
+		Especificacion aux = null;
+		// Se crea el objeto Query a partir de una SQL nativa
+		this.consulta = em.createNativeQuery("Select codSpecs from especificaciones where idModelo = ?", Especificacion.class);
+		// Al igual que con JDBC, se le indica a la query el parámetro
+		this.consulta.setParameter(1, pkMod);
+		
+		try {
+			// Se ejecuta la consulta (coge el primer resultado)
+			aux = (Especificacion) consulta.getResultList().get(0);
+		} catch (ArrayIndexOutOfBoundsException aioobe) { // Si no hay resultados	
+			aux = null;
+		}
+		
+		this.em.close();
+		return aux;
+
+	}
+	
 	public Especificacion findByNomEspec(String nomEspec) {
 		this.em = entityManagerFactory.createEntityManager();
 		Especificacion aux = null;

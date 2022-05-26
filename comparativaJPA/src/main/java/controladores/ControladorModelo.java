@@ -60,6 +60,21 @@ public class ControladorModelo {
 
 	}
 	
+	public Modelo findFirstByPKMarca(int codMarca) {
+		this.em = entityManagerFactory.createEntityManager();
+		Modelo aux = null;
+		this.consulta = em.createNativeQuery("Select * from modelos where codMarca = ?", Modelo.class);
+		this.consulta.setParameter(1, codMarca);
+		try {
+			aux = (Modelo) consulta.getResultList().get(0);
+		} catch (ArrayIndexOutOfBoundsException aioobe) {	
+			aux = null;
+		}
+		this.em.close();
+		return aux;
+
+	}
+	
 	public Modelo findByNombreModelo(String nombreModelo) {
 		this.em = entityManagerFactory.createEntityManager();
 		Modelo aux = null;

@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entidades.Marca;
+import entidades.Modelo;
 
 public class ControladorMarca {
 
@@ -57,6 +58,21 @@ public class ControladorMarca {
 			aux = null;
 		}
 
+		this.em.close();
+		return aux;
+
+	}
+	
+	public Marca findByNombreMarca(String nombreModelo) {
+		this.em = entityManagerFactory.createEntityManager();
+		Marca aux = null;
+		this.consulta = em.createNativeQuery("Select * from marcas where nombreMarca = ?", Modelo.class);
+		this.consulta.setParameter(1, nombreModelo);
+		try {
+			aux = (Marca) consulta.getSingleResult();
+		} catch (NoResultException nre) {	
+			aux = null;
+		}
 		this.em.close();
 		return aux;
 

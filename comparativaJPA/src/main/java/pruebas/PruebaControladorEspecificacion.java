@@ -10,6 +10,7 @@ public class PruebaControladorEspecificacion {
 	public static void main(String[] args) {
 
 		ControladorEspecificacion ce= new ControladorEspecificacion();
+		ControladorModelo cmod = new ControladorModelo();
 		// Se obtienen todas las instancias
 		List<Especificacion> lista = ce.findAll();
 
@@ -20,7 +21,7 @@ public class PruebaControladorEspecificacion {
 		}
 		
 		// Obtener una entidad por su pk
-		System.out.println("Tarjeta id 14 = " + ce.findByPK(14));
+		System.out.println("Especificacion id 14 = " + ce.findByPK(14));
 		
 		// Crear una entidad
 		Especificacion e1 = new Especificacion();
@@ -28,6 +29,16 @@ public class PruebaControladorEspecificacion {
 		e1.setValores("19.8");
 		e1.setDescrip("La capacidad que posee el sensor para notar el menor de los cambios");
 		ce.crearEspecificacion(e1);
+		
+		Especificacion e3 = new Especificacion();
+		e3.setNomEspec("Resolución");;
+		e3.setValores("19.9");
+		e3.setDescrip("La capacidad que posee el sensor para notar el menor de los cambios");
+		e3.setModelo(cmod.findByPK(1));
+		ce.crearEspecificacion(e3);
+		
+		// Obtener una entidad por la pk del modelo asociado al mismo
+				System.out.println("1ª especificación relacionada a idModelo 1 = " + ce.getfirstPKByPKModelo(1));
 
 		for (Especificacion t : ce.findAll()) {
 			System.out.println(t);
