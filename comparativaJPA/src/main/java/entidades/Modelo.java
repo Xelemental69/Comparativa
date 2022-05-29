@@ -4,19 +4,18 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the modelos database table.
  * 
  */
 @Entity
-@Table(name="modelos")
-@NamedQuery(name="Modelo.findAll", query="SELECT m FROM Modelo m")
+@Table(name = "modelos")
+@NamedQuery(name = "Modelo.findAll", query = "SELECT m FROM Modelo m")
 public class Modelo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idModelo;
 
 	private boolean catalogado;
@@ -27,18 +26,18 @@ public class Modelo implements Serializable {
 
 	private double precioModelo;
 
-	//bi-directional many-to-one association to Especificacion
-	@OneToMany(mappedBy="modelo")
+	// bi-directional many-to-one association to Especificacion
+	@OneToMany(mappedBy = "modelo")
 	private List<Especificacion> especificacionesModelo;
 
-	//bi-directional many-to-one association to Marca
-	@ManyToOne(cascade = {CascadeType.PERSIST})
-	@JoinColumn(name="codMarca")
+	// bi-directional many-to-one association to Marca
+	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@JoinColumn(name = "codMarca")
 	private Marca marca;
 
-	//bi-directional one-to-one association to Ranking
-	@OneToOne(cascade = {CascadeType.PERSIST})
-	@JoinColumn(name="registroRanking")
+	// bi-directional one-to-one association to Ranking
+	@OneToOne(cascade = { CascadeType.PERSIST })
+	@JoinColumn(name = "registroRanking")
 	private Ranking ranking;
 
 	public Modelo() {
@@ -136,14 +135,20 @@ public class Modelo implements Serializable {
 		builder.append(", precioModelo=");
 		builder.append(precioModelo);
 		builder.append(", especificacionesModelo=");
-		builder.append(especificacionesModelo);
-		if(marca != null) {
-		builder.append(", marca=");
-		builder.append(marca.getNombreMarca());
+		if (!especificacionesModelo.isEmpty()) {
+			for (Especificacion e : especificacionesModelo) {
+				builder.append("{" + e.getCodSpecs() + "}");
+			}
+		} else {
+			builder.append("vacío");
 		}
-		if(ranking != null) {
-		builder.append(", ranking=");
-		builder.append(ranking.getPosicion());
+		if (marca != null) {
+			builder.append(", marca=");
+			builder.append(marca.getNombreMarca());
+		}
+		if (ranking != null) {
+			builder.append(", ranking=");
+			builder.append(ranking.getPosicion());
 		}
 		builder.append("]");
 		return builder.toString();

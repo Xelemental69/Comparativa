@@ -66,7 +66,7 @@ public class ControladorMarca {
 	public Marca findByNombreMarca(String nombreModelo) {
 		this.em = entityManagerFactory.createEntityManager();
 		Marca aux = null;
-		this.consulta = em.createNativeQuery("Select * from marcas where nombreMarca = ?", Modelo.class);
+		this.consulta = em.createNativeQuery("Select * from marcas where nombreMarca = ?", Marca.class);
 		this.consulta.setParameter(1, nombreModelo);
 		try {
 			aux = (Marca) consulta.getSingleResult();

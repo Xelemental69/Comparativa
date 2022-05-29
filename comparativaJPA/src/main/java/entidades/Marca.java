@@ -4,27 +4,26 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the marcas database table.
  * 
  */
 @Entity
-@Table(name="marcas")
-@NamedQuery(name="Marca.findAll", query="SELECT m FROM Marca m")
+@Table(name = "marcas")
+@NamedQuery(name = "Marca.findAll", query = "SELECT m FROM Marca m")
 public class Marca implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codMarca;
 
 	private String descMarca;
 
 	private String nombreMarca;
 
-	//bi-directional many-to-one association to Modelo
-	@OneToMany(mappedBy="marca")
+	// bi-directional many-to-one association to Modelo
+	@OneToMany(mappedBy = "marca")
 	private List<Modelo> modelosMarca;
 
 	public Marca() {
@@ -86,7 +85,13 @@ public class Marca implements Serializable {
 		builder.append(", nombreMarca=");
 		builder.append(nombreMarca);
 		builder.append(", modelosMarca=");
-		builder.append(modelosMarca);
+		if (!modelosMarca.isEmpty()) {
+			for (Modelo mod : modelosMarca) {
+				builder.append("{" + mod.getIdModelo() + "}");
+			}
+		} else {
+			builder.append("vacío");
+		}
 		builder.append("]");
 		return builder.toString();
 	}

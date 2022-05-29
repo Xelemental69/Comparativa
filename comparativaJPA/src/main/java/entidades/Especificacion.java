@@ -25,7 +25,7 @@ public class Especificacion implements Serializable {
 	private String valores;
 
 	//bi-directional many-to-one association to Modelo
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.PERSIST })
 	@JoinColumn(name="idModelo")
 	private Modelo modelo;
 
